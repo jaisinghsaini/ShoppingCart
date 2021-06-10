@@ -1,0 +1,10 @@
+FROM postgres:9.4.24-alpine
+ENV POSTGRES_USER postgres
+ENV POSTGRES_PASSWORD admin
+ENV PGDATA /pgdata
+#COPY database.backup /tmp/
+#COPY database_restore.sh /docker-entrypoint-initdb.d/
+RUN /docker-entrypoint.sh --help
+RUN rm -rf /docker-entrypoint-initdb.d/database_restore.sh
+RUN rm -rf /tmp/database.backup
+echo "*** DATABASE CREATED! ***"
